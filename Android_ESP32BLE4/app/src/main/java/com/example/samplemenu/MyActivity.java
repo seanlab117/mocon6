@@ -30,7 +30,7 @@ import java.util.UUID;
 
 public class MyActivity extends AppCompatActivity {
 
-//    private FirebaseAnalytics mFirebaseAnalytics;
+    //    private FirebaseAnalytics mFirebaseAnalytics;
     TextView bluetoothstatus, bluetoothPaired;
     Button blescan,enableLedButton, btndisconnect, btnshut;
     BluetoothAdapter myBluetooth;
@@ -53,7 +53,7 @@ public class MyActivity extends AppCompatActivity {
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
-   //sean private GoogleApiClient client;
+    //sean private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -103,7 +103,7 @@ public class MyActivity extends AppCompatActivity {
                 if(blsocket != null && blsocket.isConnected())
                 {
 
-                       send2Bluetooth(13, 13);
+                    send2Bluetooth(13, 13);
 
                 }
             }
@@ -132,7 +132,7 @@ public class MyActivity extends AppCompatActivity {
                         blsocket.close();
                         Toast.makeText(getApplicationContext(), "disconnected", Toast.LENGTH_LONG).show();
                         bluetoothPaired.setText("DISCONNECTED");
-                       // bluetoothPaired.setTextColor(getResources().getColor(R.color.red));
+                        // bluetoothPaired.setTextColor(getResources().getColor(R.color.red));
 
                     }catch (IOException ioe)
                     {
@@ -154,7 +154,7 @@ public class MyActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Toast.makeText(getApplicationContext(), "item with address: " + devicesList.get(i) + " clicked", Toast.LENGTH_LONG).show();
 
-            connect2LED(ListDevices.get(i));
+                connect2LED(ListDevices.get(i));
             }
         });
 
@@ -245,7 +245,7 @@ public class MyActivity extends AppCompatActivity {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-       // myBluetooth.startDiscovery();
+        // myBluetooth.startDiscovery();
         if (status)
         {
             bluetoothstatus.setText("ENABLED");
@@ -262,7 +262,7 @@ public class MyActivity extends AppCompatActivity {
     }
     void connect2LED(BluetoothDevice device)
     {
-         UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb") ;
+        UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb") ;
 //        try {
 //            //sean blsocket = device.createInsecureRfcommSocketToServiceRecord(uuid);
 //            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
@@ -295,16 +295,16 @@ public class MyActivity extends AppCompatActivity {
         //make sure there is a paired device
         if ( pairedBluetoothDevice != null && blsocket != null )
         {
-             try
-             {
-                 taOut = blsocket.getOutputStream();
-                 taOut.write(led + brightness);
+            try
+            {
+                taOut = blsocket.getOutputStream();
+                taOut.write(led + brightness);
 
-                 taOut.flush();
-             }catch(IOException ioe)
-             {
-                 Log.e( "app>" , "Could not open a output stream "+ ioe );
-             }
+                taOut.flush();
+            }catch(IOException ioe)
+            {
+                Log.e( "app>" , "Could not open a output stream "+ ioe );
+            }
         }
     }
 
@@ -314,15 +314,15 @@ public class MyActivity extends AppCompatActivity {
         super.onDestroy();
         unregisterReceiver(mReceiver);
     }
-   @Override
-   protected void onResume() {
-       super.onResume();
+    @Override
+    protected void onResume() {
+        super.onResume();
 
-       // Log an event with Firebase Analytics
-       Bundle params = new Bundle();
-       params.putString("page_name", "home_page");
+        // Log an event with Firebase Analytics
+        Bundle params = new Bundle();
+        params.putString("page_name", "home_page");
 //       mFirebaseAnalytics.logEvent("page_view", params);
-   }
+    }
     private void createDynamicLink() {
 //        FirebaseDynamicLinks.getInstance()
 //                .createDynamicLink()
@@ -360,7 +360,7 @@ public class MyActivity extends AppCompatActivity {
             Log.i("app>", "broadcast received") ;
             String action = intent.getAction();
             //sean
-             ctx=context;
+            ctx=context;
 
             // When discovery finds a device
             if (BluetoothDevice.ACTION_FOUND.equals(action))
@@ -387,5 +387,3 @@ public class MyActivity extends AppCompatActivity {
     };
 
 }
-
-
