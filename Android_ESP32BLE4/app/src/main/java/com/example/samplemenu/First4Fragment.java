@@ -9,11 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.samplemenu.databinding.FragmentFirst3Binding;
+import com.example.samplemenu.databinding.FragmentFirst4Binding;
 
-public class First3Fragment extends Fragment {
+public class First4Fragment extends Fragment {
 
-    private FragmentFirst3Binding binding;
+    private FragmentFirst4Binding binding;
 
     @Override
     public View onCreateView(
@@ -21,7 +21,7 @@ public class First3Fragment extends Fragment {
             Bundle savedInstanceState
     ) {
 
-        binding = FragmentFirst3Binding.inflate(inflater, container, false);
+        binding = FragmentFirst4Binding.inflate(inflater, container, false);
         return binding.getRoot();
 
     }

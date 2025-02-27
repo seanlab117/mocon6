@@ -2,16 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-
-    <!-- Required for Android 12+ -->
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" /> <!-- Required for Android 12+ -->
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
-    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" /> <!-- Required for device discovery -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-feature
+        android:name="android.hardware.bluetooth"
+        android:required="true" />
 
-    <!-- Required for device discovery -->
-
-
-    <uses-feature android:name="android.hardware.bluetooth" android:required="true" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -21,8 +19,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SampleMenu"
-    tools:targetApi="33">
+        tools:targetApi="33">
+        <activity
+            android:name=".MainActivity2"
+            android:exported="false" />
 
+        <activity
+            android:name=".MainActivity6"
+            android:exported="false" />
         <activity
             android:name=".MainActivity4"
             android:exported="false"
@@ -34,6 +38,8 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+
+
             </intent-filter>
         </activity>
         <activity
@@ -44,10 +50,6 @@
             android:name=".SerialService"
             android:foregroundServiceType="remoteMessaging|connectedDevice"
             tools:ignore="ForegroundServicePermission" />
-
-
-
-
     </application>
 
 </manifest>

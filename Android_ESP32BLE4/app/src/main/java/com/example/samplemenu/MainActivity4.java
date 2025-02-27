@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -15,7 +17,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.samplemenu.databinding.ActivityMain4Binding;
 
-public class MainActivity4 extends AppCompatActivity {
+public class MainActivity4 extends AppCompatActivity implements FragmentManager.OnBackStackChangedListener {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMain4Binding binding;
@@ -23,6 +25,20 @@ public class MainActivity4 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main4);
+
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        //
+        getSupportFragmentManager().addOnBackStackChangedListener(this);
+        if (savedInstanceState == null)
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment, new DevicesFragment(), "devices").commit();
+        else
+            onBackStackChanged();
+
+
+
 
         binding = ActivityMain4Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -48,5 +64,10 @@ public class MainActivity4 extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main4);
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    public void onBackStackChanged() {
+
     }
 }

@@ -37,7 +37,7 @@ public class SerialService extends Service implements SerialListener {
         ArrayDeque<byte[]> datas;
         Exception e;
 
-        QueueItem(QueueType type) { this.type=type; if(type== QueueType.Read) init(); }
+        QueueItem(QueueType type) { this.type=type; if(type==QueueType.Read) init(); }
         QueueItem(QueueType type, Exception e) { this.type=type; this.e=e; }
         QueueItem(QueueType type, ArrayDeque<byte[]> datas) { this.type=type; this.datas=datas; }
 

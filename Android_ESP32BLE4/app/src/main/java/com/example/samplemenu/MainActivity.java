@@ -7,6 +7,7 @@ import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -25,8 +26,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    public String packageName="de.kai_morich.simple_bluetooth_terminal";
-    public String className="de.kai_morich.simple_bluetooth_terminal.MainActivity";
+    //sean_0227
+
+
+    public String packageName0="de.kai_morich.serial_bluetooth_terminal";
+    public String className0="de.kai_morich.serial_bluetooth_terminal.MainActivity";
+
+    public String packageName1="de.kai_morich.serial_bluetooth_terminal";
+    public String className1="de.kai_morich.serial_bluetooth_terminal.MainActivity";
 
     private Spinner types;
     private Button show;
@@ -67,10 +74,10 @@ public class MainActivity extends AppCompatActivity {
                 String selectedType = types.getSelectedItem().toString();
                 List<Drink> drinkList;
 
-                if (selectedType.equals("All scenario")) {
+                if (selectedType.equals("All Devices")) {
                     drinkList = da.getAllDrinks();
 
-                    Log.d("haha", "drinkList");
+                    Log.d("haha", "drinkList 1");
 
                 } else {
                     drinkList = da.getDrinkByType(selectedType);
@@ -86,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                openBTSCAN2();
+                openBTSCAN();
 
             }
         });
@@ -109,6 +116,8 @@ public class MainActivity extends AppCompatActivity {
         for (Drink drink : drinkList) {
             String displayString = drink.toString();
             displayList.add(displayString);
+            Log.d("haha", "showDrinksList"+displayString);
+            //openBTSCAN2(drinkList);
 
         }
 
@@ -116,10 +125,17 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, displayList);
         drinks.setAdapter(adapter);
 
-
-
+        drinks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItem = displayList.get(position);
+                Toast.makeText(MainActivity.this, "클릭한 아이템: " + selectedItem, Toast.LENGTH_SHORT).show();
+                openBTSCAN2(position);
+            }
+        });
 
     }
+
 
     private final androidx.activity.result.ActivityResultLauncher<Intent> ActivityResultLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
@@ -138,18 +154,99 @@ public class MainActivity extends AppCompatActivity {
         ActivityResultLauncher.launch(intent);
         //imagePickerLauncher.launch(intent);
     }
-    private void openBTSCAN2() {
+    private void openBTSCAN2( int position) {
 
         // Toast.makeText(getApplicationContext(), "openBTSCAN2", Toast.LENGTH_LONG).show();
         // Intent intent = new Intent(this, MainActivity4.class);
         //de.kai_morich.simple_bluetooth_terminal
         // ActivityResultLauncher.launch(intent);
         //imagePickerLauncher.launch(intent);
+      switch (position){
+          case 0:
+          {
+              Intent intent = new Intent(this, MainActivity.class);
+              intent.setClassName(packageName0, className0);
+              intent.putExtra("challenge", "123456");
+              ActivityResultLauncher.launch(intent);
+          }
+              break;
+          case 1:
+          {
+              Intent intent = new Intent(this, MainActivity.class);
+              intent.setClassName(packageName1, className1);
+              intent.putExtra("challenge", "123456");
+              ActivityResultLauncher.launch(intent);
+              Toast.makeText(getApplicationContext(), "position 1", Toast.LENGTH_LONG).show();
+          }
+              break;
+          case 2:
+          {    Intent intent = new Intent(this, MyActivity.class);
+              ActivityResultLauncher.launch(intent);
+              Toast.makeText(getApplicationContext(), "position 2", Toast.LENGTH_LONG).show();
+          }
+              break;
+          case 3:
+          {
+              Intent intent = new Intent(this, MyActivity.class);
+              ActivityResultLauncher.launch(intent);
+              Toast.makeText(getApplicationContext(), "position 3", Toast.LENGTH_LONG).show();
+          }
+              break;
+          case 4:
+          {
+              Intent intent = new Intent(this, MyActivity.class);
+              ActivityResultLauncher.launch(intent);
+              Toast.makeText(getApplicationContext(), "position 4", Toast.LENGTH_LONG).show();
+          }
+              break;
+          case 5:
+          {
+              Intent intent = new Intent(this, MyActivity.class);
+              ActivityResultLauncher.launch(intent);
+              Toast.makeText(getApplicationContext(), "position 5", Toast.LENGTH_LONG).show();
+          }
+          break;
+          case 6:
+          {
+              Intent intent = new Intent(this, MainActivity2.class);
+              ActivityResultLauncher.launch(intent);
+              Toast.makeText(getApplicationContext(), "position 6", Toast.LENGTH_LONG).show();
+          }
+              break;
+          default:
+          {
+              Intent intent = new Intent(this, MyActivity.class);
+              ActivityResultLauncher.launch(intent);
+              Toast.makeText(getApplicationContext(), "position default", Toast.LENGTH_LONG).show();
+          }
+              break;
+      }
 
-        Intent intent = new Intent(this, MyActivity.class);
-        intent.setClassName(packageName, className);
-        intent.putExtra("challenge", "123456");
-        ActivityResultLauncher.launch(intent);
+//       if(position==0) {
+//           Intent intent = new Intent(this, MyActivity.class);
+//           intent.setClassName(packageName, className);
+//           intent.putExtra("challenge", "123456");
+//           ActivityResultLauncher.launch(intent);
+//       }
+//       else  if (position==1)
+//        {
+//            Toast.makeText(getApplicationContext(), "position 1", Toast.LENGTH_LONG).show();
+//        }
+//       else  if (position==2)
+//       {
+//           Toast.makeText(getApplicationContext(), "position 2", Toast.LENGTH_LONG).show();
+//       }
+//       else  if (position==3)
+//       {
+//           Toast.makeText(getApplicationContext(), "position 3", Toast.LENGTH_LONG).show();
+//       }
+//       else  if (position==4)
+//       {
+//           Toast.makeText(getApplicationContext(), "position 4", Toast.LENGTH_LONG).show();
+//       }
+
+
+
 
     }
 
