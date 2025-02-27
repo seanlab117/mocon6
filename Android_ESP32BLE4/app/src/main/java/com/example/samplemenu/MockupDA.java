@@ -9,15 +9,15 @@ public class MockupDA {
 
     public MockupDA(){
         drinks = new ArrayList<>();
-        drinks.add(new Drink("Moter 1", 12, "Moter"));
-        drinks.add(new Drink("Moter 2", 12, "Moter"));
-        drinks.add(new Drink("Moter 3", 12, "Moter"));
-        drinks.add(new Drink("RGB 1", 3.00, "RGB"));
-        drinks.add(new Drink("RGB 2", 2.00, "RGB"));
-        drinks.add(new Drink("RGB 3", 1.75, "RGB"));
-        drinks.add(new Drink("Display 1", 2.75, "Display"));
-        drinks.add(new Drink("Display 2", 3.50, "Display"));
-        drinks.add(new Drink("Display 2", 2.25, "Display"));
+        drinks.add(new Drink("scenario 1", 12, "Moter"));
+        drinks.add(new Drink("scenario 2", 12, "Moter"));
+        drinks.add(new Drink("scenario 3", 12, "Moter"));
+        drinks.add(new Drink("scenario 4", 3.00, "RGB"));
+        drinks.add(new Drink("scenario 5", 2.00, "RGB"));
+        drinks.add(new Drink("scenario 6", 1.75, "RGB"));
+        drinks.add(new Drink("scenario 7", 2.75, "Display"));
+        drinks.add(new Drink("scenario 8", 3.50, "Display"));
+        drinks.add(new Drink("scenario 9", 2.25, "Display"));
 //        drinks.add(new Drink("Mango Juice", 2.50, "fruit juice"));
 //        drinks.add(new Drink("Milk", 1.00, "dairy drink"));
 //        drinks.add(new Drink("Yogurt Drink (Ayran)", 2.00, "dairy drink"));
@@ -37,7 +37,7 @@ public class MockupDA {
 
     public List<String> getDrinkTypes(){
         List<String> types = new ArrayList<>();
-        types.add("All Drinks");
+        types.add("All Scenario");
         for (Drink drink : drinks) {
             if (!types.contains(drink.getType())){
                 types.add(drink.getType());

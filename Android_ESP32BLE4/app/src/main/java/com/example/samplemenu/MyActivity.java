@@ -1,5 +1,6 @@
 package com.example.samplemenu;
 
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
@@ -19,6 +20,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresPermission;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -61,7 +63,9 @@ public class MyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
         //sean_0222
-        blescan = (Button) findViewById(R.id.buttonlightup);
+       // blescan = (Button) findViewById(R.id.buttonlightup);
+
+
         bluetoothstatus = (TextView) findViewById(R.id.bluetooth_state);
         bluetoothPaired = (TextView) findViewById(R.id.bluetooth_paired);
         enableLedButton = (Button) findViewById(R.id.buttonlightup);
@@ -82,18 +86,23 @@ public class MyActivity extends AppCompatActivity {
         adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.listitem, R.id.txtlist,  devicesList);
         listt.setAdapter(adapter);
 
+
+
+
+
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         //sean client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
         //mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
-        blescan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                connectScan();
-
-            }
-        });
+//        blescan.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Log.d("haha", "blescan.setOnClickListener");
+//                //connectScan();
+//
+//            }
+//        });
 
 
 
@@ -102,7 +111,7 @@ public class MyActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(blsocket != null && blsocket.isConnected())
                 {
-
+                    Log.d("haha", "bbtnshut.setOnClickListener");
                     send2Bluetooth(13, 13);
 
                 }
@@ -114,7 +123,7 @@ public class MyActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(blsocket != null && blsocket.isConnected())
                 {
-
+                    Log.d("haha", "enableLedButton.setOnClickListener");
                     send2Bluetooth(44, 45);
 
                 }
@@ -228,30 +237,45 @@ public class MyActivity extends AppCompatActivity {
         });
     }
 
+
     @Override
+
     protected void onStart() {
         super.onStart();
         //sean client.connect();
 
         myBluetooth = BluetoothAdapter.getDefaultAdapter();
+        //Log.d("haha", "myBluetooth:"+myBluetooth.getName()) ;
+        ctx=this;
         status = myBluetooth.isEnabled();
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        // myBluetooth.startDiscovery();
+        Log.d("haha", "ctx:"+ctx) ;
+        Log.d("haha", "myBluetooth:"+status) ;
+
+       // Log.d("haha", "myBluetooth:"+myBluetoothl) ;
+
+
+        //myBluetooth.startDiscovery();
+
+//        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
+//            // TODO: Consider calling
+//            //    ActivityCompat#requestPermissions
+//            // here to request the missing permissions, and then overriding
+//            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+//            //                                          int[] grantResults)
+//            // to handle the case where the user grants the permission. See the documentation
+//            // for ActivityCompat#requestPermissions for more details.
+//            return;
+//        }
+
+       //sean myBluetooth.startDiscovery();
         if (status)
         {
             bluetoothstatus.setText("ENABLED");
+            Log.d("haha", "ENABLED:"+status) ;
             registerReceiver(mReceiver, new IntentFilter(BluetoothDevice.ACTION_FOUND));
         }
         else {
+            Log.d("haha", "NOT READY:"+status) ;
             bluetoothstatus.setText("NOT READY");
         }
     }
@@ -263,31 +287,26 @@ public class MyActivity extends AppCompatActivity {
     void connect2LED(BluetoothDevice device)
     {
         UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb") ;
-//        try {
-//            //sean blsocket = device.createInsecureRfcommSocketToServiceRecord(uuid);
-//            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-//                // TODO: Consider calling
-//                //    ActivityCompat#requestPermissions
-//                // here to request the missing permissions, and then overriding
-//                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-//                //                                          int[] grantResults)
-//                // to handle the case where the user grants the permission. See the documentation
-//                // for ActivityCompat#requestPermissions for more details.
-//                return;
-//            }
-////            blsocket = device.createInsecureRfcommSocketToServiceRecord(uuid);
-////            blsocket.connect();
-//            pairedBluetoothDevice = device;
-////            bluetoothPaired.setText("PAIRED: "+device.getName());
-////            bluetoothPaired.setTextColor(getResources().getColor(R.color.green));
-//
-//            Toast.makeText(getApplicationContext(), "Device paired successfully!",Toast.LENGTH_LONG).show();
-//        }catch(IOException ioe)
-//        {
-//            Log.e("taha>", "cannot connect to device :( " +ioe);
-//            Toast.makeText(getApplicationContext(), "Could not connect",Toast.LENGTH_LONG).show();
-//            pairedBluetoothDevice = null;
-//        }
+
+        //sean blsocket = device.createInsecureRfcommSocketToServiceRecord(uuid);
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            Log.d("haha", "checkSelfPermission:");
+            return;
+        }
+//            blsocket = device.createInsecureRfcommSocketToServiceRecord(uuid);
+//            blsocket.connect();
+        pairedBluetoothDevice = device;
+//            bluetoothPaired.setText("PAIRED: "+device.getName());
+//            bluetoothPaired.setTextColor(getResources().getColor(R.color.green));
+
+        Toast.makeText(getApplicationContext(), "Device paired successfully!",Toast.LENGTH_LONG).show();
     }
 
     void send2Bluetooth(int led, int brightness)
@@ -357,11 +376,11 @@ public class MyActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent)
         {
 
-            Log.i("app>", "broadcast received") ;
+            Log.d("haha", "broadcast received") ;
             String action = intent.getAction();
             //sean
             ctx=context;
-
+            Log.d("haha", "broadcast received:"+ctx) ;
             // When discovery finds a device
             if (BluetoothDevice.ACTION_FOUND.equals(action))
             {
@@ -385,5 +404,6 @@ public class MyActivity extends AppCompatActivity {
             }
         }
     };
+
 
 }

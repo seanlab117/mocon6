@@ -2,6 +2,8 @@ package com.example.samplemenu;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,6 +25,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    public String packageName="de.kai_morich.simple_bluetooth_terminal";
+    public String className="de.kai_morich.simple_bluetooth_terminal.MainActivity";
 
     private Spinner types;
     private Button show;
@@ -63,20 +67,26 @@ public class MainActivity extends AppCompatActivity {
                 String selectedType = types.getSelectedItem().toString();
                 List<Drink> drinkList;
 
-                if (selectedType.equals("All Drinks")) {
+                if (selectedType.equals("All scenario")) {
                     drinkList = da.getAllDrinks();
+
+                    Log.d("haha", "drinkList");
+
                 } else {
                     drinkList = da.getDrinkByType(selectedType);
+
+                    Log.d("haha", "else drinkList");
                 }
 
                 showDrinksList(drinkList);
+
             }
         });
         blescan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                openBTSCAN();
+                openBTSCAN2();
 
             }
         });
@@ -99,11 +109,15 @@ public class MainActivity extends AppCompatActivity {
         for (Drink drink : drinkList) {
             String displayString = drink.toString();
             displayList.add(displayString);
+
         }
 
         // Create an ArrayAdapter to display the list of drinks in the ListView
         ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, displayList);
         drinks.setAdapter(adapter);
+
+
+
 
     }
 
@@ -124,5 +138,22 @@ public class MainActivity extends AppCompatActivity {
         ActivityResultLauncher.launch(intent);
         //imagePickerLauncher.launch(intent);
     }
+    private void openBTSCAN2() {
+
+        // Toast.makeText(getApplicationContext(), "openBTSCAN2", Toast.LENGTH_LONG).show();
+        // Intent intent = new Intent(this, MainActivity4.class);
+        //de.kai_morich.simple_bluetooth_terminal
+        // ActivityResultLauncher.launch(intent);
+        //imagePickerLauncher.launch(intent);
+
+        Intent intent = new Intent(this, MyActivity.class);
+        intent.setClassName(packageName, className);
+        intent.putExtra("challenge", "123456");
+        ActivityResultLauncher.launch(intent);
+
+    }
+
+
+
 
 }
