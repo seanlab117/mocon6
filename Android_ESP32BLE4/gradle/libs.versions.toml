@@ -11,6 +11,8 @@ navigationFragment = "2.8.7"
 navigationUi = "2.8.7"
 lifecycleLivedataKtx = "2.8.7"
 lifecycleViewmodelKtx = "2.8.7"
+google-location = "21.0.1"
+accompanist-permissions = "0.33.2-alpha" # Latest version (Check Google's releases for updates)
 
 
 [libraries]
@@ -25,7 +27,8 @@ navigation-fragment = { group = "androidx.navigation", name = "navigation-fragme
 navigation-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navigationUi" }
 lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtx" }
 lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
-
+google-location = { module = "com.google.android.gms:play-services-location", version.ref = "google-location" }
+accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanist-permissions" }
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 

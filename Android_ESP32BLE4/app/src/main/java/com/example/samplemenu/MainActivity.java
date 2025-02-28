@@ -35,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
     public String packageName1="de.kai_morich.serial_bluetooth_terminal";
     public String className1="de.kai_morich.serial_bluetooth_terminal.MainActivity";
 
+    public String packageName3="com.teraunits.myapplication";
+    public String className3="com.teraunits.myapplication.MainActivity";
+
+
     private Spinner types;
     private Button show;
     private ListView drinks;
@@ -187,21 +191,22 @@ public class MainActivity extends AppCompatActivity {
               break;
           case 3:
           {
-              Intent intent = new Intent(this, MyActivity.class);
+              Intent intent = new Intent(this, MainActivity.class);
+              intent.setClassName(packageName3, className3);
               ActivityResultLauncher.launch(intent);
               Toast.makeText(getApplicationContext(), "position 3", Toast.LENGTH_LONG).show();
           }
               break;
           case 4:
           {
-              Intent intent = new Intent(this, MyActivity.class);
+              Intent intent = new Intent(this, MainActivity7.class);
               ActivityResultLauncher.launch(intent);
               Toast.makeText(getApplicationContext(), "position 4", Toast.LENGTH_LONG).show();
           }
               break;
           case 5:
           {
-              Intent intent = new Intent(this, MyActivity.class);
+              Intent intent = new Intent(this, MainActivity8.class);
               ActivityResultLauncher.launch(intent);
               Toast.makeText(getApplicationContext(), "position 5", Toast.LENGTH_LONG).show();
           }
@@ -215,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
               break;
           default:
           {
-              Intent intent = new Intent(this, MyActivity.class);
+              Intent intent = new Intent(this, MainActivity10.class);
               ActivityResultLauncher.launch(intent);
               Toast.makeText(getApplicationContext(), "position default", Toast.LENGTH_LONG).show();
           }
