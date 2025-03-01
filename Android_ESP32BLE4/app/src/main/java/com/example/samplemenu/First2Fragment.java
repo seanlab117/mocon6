@@ -9,7 +9,10 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.samplemenu.databinding.FragmentFirst2Binding;
+//import com.example.samplemenu.databinding.FragmentFirst2Binding;
+import com.example.samplemenu.First2Fragment.*;
+import com.hishri.fnarduino.R;
+import com.hishri.fnarduino.databinding.FragmentFirst2Binding;
 
 public class First2Fragment extends Fragment {
 

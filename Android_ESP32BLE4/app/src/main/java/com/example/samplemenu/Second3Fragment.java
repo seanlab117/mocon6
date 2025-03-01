@@ -9,8 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.samplemenu.databinding.FragmentSecond3Binding;
-
+//seam import com.example.samplemenu.databinding.FragmentSecond3Binding;
+import com.hishri.fnarduino.R;
+import com.hishri.fnarduino.databinding.FragmentSecond3Binding;
 public class Second3Fragment extends Fragment {
 
     private FragmentSecond3Binding binding;

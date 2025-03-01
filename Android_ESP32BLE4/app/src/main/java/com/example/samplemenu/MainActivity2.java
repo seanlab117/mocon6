@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.samplemenu.ui.main.MainFragment;
+import com.hishri.fnarduino.R;
+
 import androidx.fragment.app.FragmentManager;
 
 public class MainActivity2 extends AppCompatActivity  {

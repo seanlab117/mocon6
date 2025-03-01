@@ -8,15 +8,20 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
+//sean import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.*;
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
+//import com.google.android.gms.appindexing.Action;
+//import com.google.android.gms.appindexing.AppIndex;
+//import com.google.android.gms.common.api.GoogleApiClient;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -41,13 +46,14 @@ public class MyActivity extends AppCompatActivity {
     BluetoothDevice pairedBluetoothDevice = null;
     BluetoothSocket blsocket = null ;
 
+    Context ctx;
 
     ListView listt;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
-    private GoogleApiClient client;
+    //sean private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -74,10 +80,11 @@ public class MyActivity extends AppCompatActivity {
         devicesList = new ArrayList<String>();
         adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.listitem, R.id.txtlist,  devicesList);
         listt.setAdapter(adapter);
-
+         //sean
+        ctx=this;
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+        //sean client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
 
         btnshut.setOnClickListener(new View.OnClickListener() {
@@ -214,10 +221,20 @@ public class MyActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        client.connect();
+        //sean client.connect();
 
         myBluetooth = BluetoothAdapter.getDefaultAdapter();
         status = myBluetooth.isEnabled();
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         myBluetooth.startDiscovery();
         if (status)
         {
@@ -234,6 +251,16 @@ public class MyActivity extends AppCompatActivity {
     {
          UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb") ;
         try {
+            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
             blsocket = device.createInsecureRfcommSocketToServiceRecord(uuid);
             blsocket.connect();
             pairedBluetoothDevice = device;
@@ -282,17 +309,18 @@ public class MyActivity extends AppCompatActivity {
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "My Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
 
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://com.hishri.fnarduino/http/host/path")
-        );
-        AppIndex.AppIndexApi.end(client, viewAction);
-        client.disconnect();
+//        Action viewAction = Action.newAction(
+//                Action.TYPE_VIEW, // TODO: choose an action type.
+//                "My Page", // TODO: Define a title for the content shown.
+//                // TODO: If you have web page content that matches this app activity's content,
+//
+//                Uri.parse("http://host/path"),
+//                // TODO: Make sure this auto-generated app deep link URI is correct.
+//                Uri.parse("android-app://com.hishri.fnarduino/http/host/path")
+//        );
+//        AppIndex.AppIndexApi.end(client, viewAction);
+//        client.disconnect();
     }
 
     private final BroadcastReceiver mReceiver = new BroadcastReceiver()
@@ -311,6 +339,16 @@ public class MyActivity extends AppCompatActivity {
                 // Get the BluetoothDevice object from the Intent
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 // Add the name and address to an array adapter to show in a ListView
+                if (ActivityCompat.checkSelfPermission(ctx, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
                 devicesList.add(device.getName() + " @"+device.getAddress());
                 ListDevices.add(device);
 

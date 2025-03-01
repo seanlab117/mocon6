@@ -5,6 +5,8 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.hishri.fnarduino.R;
+
 public class MainActivity9 extends AppCompatActivity {
 
     public static final int ESP32_PORT = 80;

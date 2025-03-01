@@ -15,7 +15,9 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.samplemenu.databinding.ActivityMain4Binding;
+//import com.example.samplemenu.databinding.ActivityMain4Binding;
+import com.hishri.fnarduino.R;
+import com.hishri.fnarduino.databinding.ActivityMain4Binding;
 
 public class MainActivity4 extends AppCompatActivity implements FragmentManager.OnBackStackChangedListener {
 

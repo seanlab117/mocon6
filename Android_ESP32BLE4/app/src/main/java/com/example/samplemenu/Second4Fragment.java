@@ -9,36 +9,42 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.samplemenu.databinding.FragmentSecond4Binding;
+//sean import com.example.samplemenu.databinding.FragmentSecond4Binding;
+import com.hishri.fnarduino.R;
+import com.hishri.fnarduino.databinding.FragmentSecond4Binding;
+
 
 public class Second4Fragment extends Fragment {
 
-    private FragmentSecond4Binding binding;
+   // public class Second4Fragment extends Fragment {
 
-    @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState
-    ) {
+        private FragmentSecond4Binding binding;
 
-        binding = FragmentSecond4Binding.inflate(inflater, container, false);
-        return binding.getRoot();
+        @Override
+        public View onCreateView(
+                @NonNull LayoutInflater inflater, ViewGroup container,
+                Bundle savedInstanceState
+        ) {
 
-    }
+            binding = FragmentSecond4Binding.inflate(inflater, container, false);
+            return binding.getRoot();
 
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        }
 
-        binding.buttonSecond.setOnClickListener(v ->
-                NavHostFragment.findNavController(Second4Fragment.this)
-                        .navigate(R.id.action_Second4Fragment_to_First4Fragment)
-        );
-    }
+        public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+            super.onViewCreated(view, savedInstanceState);
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
+            binding.buttonSecond.setOnClickListener(v ->
+                    NavHostFragment.findNavController(Second4Fragment.this)
+                            .navigate(R
+                                    .id.action_Second4Fragment_to_First4Fragment)
+            );
+        }
 
+        @Override
+        public void onDestroyView() {
+            super.onDestroyView();
+            binding = null;
+        }
+ //   }
 }

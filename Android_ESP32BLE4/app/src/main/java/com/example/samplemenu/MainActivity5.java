@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 
+import com.hishri.fnarduino.R;
+
 public class MainActivity5 extends AppCompatActivity implements FragmentManager.OnBackStackChangedListener {
 
     @Override

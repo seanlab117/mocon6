@@ -9,7 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.samplemenu.databinding.FragmentFirst3Binding;
+import com.hishri.fnarduino.databinding.FragmentFirst3Binding;
+
+//sean import com.example.samplemenu.databinding.FragmentFirst3Binding;
 
 public class First3Fragment extends Fragment {
 

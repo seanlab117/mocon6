@@ -27,6 +27,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.hishri.fnarduino.R;
+
 import java.util.List;
 
 public class MainActivity10 extends AppCompatActivity {

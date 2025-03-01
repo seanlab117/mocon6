@@ -29,6 +29,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.hishri.fnarduino.R;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;

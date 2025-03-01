@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.hishri.fnarduino.R;
+
 public class MainActivity8 extends AppCompatActivity {
 
     private EditText editTextIP;

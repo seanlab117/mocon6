@@ -17,6 +17,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
+import com.hishri.fnarduino.R;
+
 import java.io.IOException;
 import java.util.ArrayDeque;
 

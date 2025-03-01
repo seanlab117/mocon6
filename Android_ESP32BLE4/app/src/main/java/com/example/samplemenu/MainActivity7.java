@@ -19,6 +19,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.hishri.fnarduino.R;
+
 import java.util.List;
 
 public class MainActivity7 extends AppCompatActivity {
